@@ -1,4 +1,3 @@
-import { redirect } from "next/navigation"
 import { Download } from "./download"
 export default async function Page({
     params,
