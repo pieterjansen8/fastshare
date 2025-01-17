@@ -64,7 +64,7 @@ export default function Home() {
   );
 }
 
-export function NotSignedIn() {
+function NotSignedIn() {
   const router = useRouter();
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4">
