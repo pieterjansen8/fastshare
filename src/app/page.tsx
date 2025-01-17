@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { UploadButton } from "@/utils/uploadthing";
 import { useState } from "react";
-import { Share2, Upload } from 'lucide-react';
+import { Share2 } from 'lucide-react';
 
 export default function Home() {
   const [url, setURL] = useState({

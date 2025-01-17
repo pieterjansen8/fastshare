@@ -1,6 +1,5 @@
 import Link from "next/link"
 import dynamic from 'next/dynamic'
-import { Button } from "@/components/ui/button"
 import { UserButton } from "@stackframe/stack"
 
 const MobileMenu = dynamic(() => import('./mobile-menu'), { ssr: false })

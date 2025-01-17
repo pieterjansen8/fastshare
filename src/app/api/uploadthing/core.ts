@@ -4,7 +4,7 @@ import { stackServerApp } from "@/stack";
 
 const f = createUploadthing();
  
-const auth = async (req:Request) => { 
+const auth = async () => { 
     const r = await stackServerApp.getUser()
     return {id: r?.primaryEmail}
 }
@@ -12,9 +12,9 @@ const auth = async (req:Request) => {
 export const ourFileRouter = {
   // Define as many FileRoutes as you like, each with a unique routeSlug
   FileUploader: f({"blob": { maxFileSize: "32MB" } })
-    .middleware(async ({ req }) => {
+    .middleware(async () => {
       // This code runs on your server before upload
-      const user = await auth(req);
+      const user = await auth();
  
       // If you throw, the user will not be able to upload
       if (!user) throw new UploadThingError("Unauthorized");
@@ -22,7 +22,7 @@ export const ourFileRouter = {
       // Whatever is returned here is accessible in onUploadComplete as `metadata`
       return { userId: user.id };
     })
-    .onUploadComplete(async ({ metadata, file }) => {
+    .onUploadComplete(async ({ metadata }) => {
       // This code RUNS ON YOUR SERVER after upload
  
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
