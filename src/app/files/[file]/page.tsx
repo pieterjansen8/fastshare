@@ -1,5 +1,5 @@
-"use client";
 import { redirect } from "next/navigation"
+import { Download } from "./download"
 export default async function Page({
     params,
   }: {
@@ -7,8 +7,8 @@ export default async function Page({
   }) {
     const slug = (await params).file
     return(
-        <span className="text-blue-600 text-2xl" onClick={() => {redirect("https://utfs.io/f/"+slug)}}>
-            Download me!
-        </span>
+      <div>
+        <Download key={slug}></Download>
+      </div>
     )
   }
