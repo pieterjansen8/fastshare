@@ -4,6 +4,7 @@ export default function MyAccountPage() {
   return (
     <AccountSettings
       fullPage={true}
+
       extraItems={[{
         title: 'Go back',
         iconName: "ArrowLeft",
