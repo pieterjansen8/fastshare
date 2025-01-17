@@ -112,7 +112,7 @@ function share(url: string, name: string, key:string) {
   const shareData = {
     title: "Ptj-share, " + name,
     text: "I'm a file, shared with Ptj-share!",
-    url: "https://fastshare.vercel.app/files/"+key,
+    url: "https://fastshare-xi.vercel.app/files/"+key,
   };
   navigator.share(shareData);
 }
