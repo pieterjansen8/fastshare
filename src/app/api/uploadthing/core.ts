@@ -6,7 +6,7 @@ const f = createUploadthing();
  
 const auth = async () => { 
     const r = await stackServerApp.getUser()
-    return {id: r?.primaryEmail}
+    return {id: r?.primaryEmail, autherized: r?.primaryEmailVerified}
 }
 // FileRouter for your app, can contain multiple FileRoutes
 export const ourFileRouter = {
@@ -17,8 +17,10 @@ export const ourFileRouter = {
       const user = await auth();
  
       // If you throw, the user will not be able to upload
-      if (!user) throw new UploadThingError("Unauthorized");
- 
+      if (!user.id) throw new UploadThingError("Unauthorized");
+      if(user.autherized==false){
+        throw new UploadThingError("User not verified, check ur inbox.")
+      }
       // Whatever is returned here is accessible in onUploadComplete as `metadata`
       return { userId: user.id };
     })

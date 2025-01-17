@@ -9,7 +9,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { UploadButton } from "@/utils/uploadthing";
 import { useState } from "react";
 import { Share2 } from 'lucide-react';
-
+import { useToast } from "@/hooks/use-toast"
 export default function Home() {
   const [url, setURL] = useState({
     url: "",
@@ -17,7 +17,7 @@ export default function Home() {
     key: ""
   });
   const user = useUser();
-
+  const { toast } = useToast()
   if (!user?.primaryEmail) {
     return (
       <motion.div
@@ -30,7 +30,6 @@ export default function Home() {
       </motion.div>
     );
   }
-
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -49,11 +48,18 @@ export default function Home() {
                   name: res[0].name,
                   key: res[0].key
                 });
-                alert("Upload Completed");
+                toast({
+                  title: "Succesfull",
+                  description:"File succesfully uploaded!"
+                })
               }}
               onUploadError={(error: Error) => {
                 console.log(error)
-                alert(`ERROR! ${error.message, error.cause, error.name, error.stack}`);
+                toast({
+                  title: "error",
+                  description: error.message,
+                  variant: "destructive"
+                })
               }}
             />
             <ShowURL url={url.url} name={url.name} upkey={url.key} />

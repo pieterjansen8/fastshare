@@ -5,7 +5,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
- 
+import { Toaster  } from "@/components/ui/toaster";
 import { ourFileRouter } from "@/app/api/uploadthing/core";
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -52,6 +52,7 @@ export default function RootLayout({
         
         {children}
       </StackTheme></StackProvider>
+      <Toaster />
       </body>
     </html>
   );
